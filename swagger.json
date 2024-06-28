@@ -1,0 +1,60 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Image Resizer API",
+    "description": "Resize JPEG, PNG, WebP, and GIF images on demand using the sharp library"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/resizer/{imageURL}": {
+      "get": {
+        "tags": [
+          "resizer"
+        ],
+        "summary": "Resize image to new dimensions",
+        "description": "Resize hosted image to new dimensions using sharp",
+        "parameters": [
+          {
+            "name": "imageURL",
+            "in": "path",
+            "description": "URL of hosted image to transform"
+          },
+          {
+            "name": "width",
+            "in": "query",
+            "description": "Target width of resized image"
+          }, 
+          {
+            "name": "height",
+            "in": "query",
+            "description": "Target height of resized image"
+          }
+        ],
+        "produces": [
+          "image/webp",
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/jp2"
+        ],
+        "responses": {
+          "200": {
+            "description": "Resize Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "415": {
+            "description": "Unsupported Media Type"
+          }
+        }
+      }
+    }
+  }
+}
